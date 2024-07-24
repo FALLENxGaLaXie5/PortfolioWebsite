@@ -10,14 +10,17 @@ import {
 
 import CanvasLoader from "../Loader";
 
-const Ball = (props) => {
-  const [decal] = useTexture([props.imgUrl]);
+// Ball component with rotation speed props for each axis
+const Ball = ({ imgUrl, rotationSpeedX, rotationSpeedY, rotationSpeedZ }) => {
+  const [decal] = useTexture([imgUrl]);
   const meshRef = useRef();
 
-  // Use the useFrame hook to rotate the mesh at a faster speed
+  // Use the useFrame hook to rotate the mesh with the specified speed on all axes
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.009; // Increased value to make rotation faster
+      meshRef.current.rotation.x += rotationSpeedX;
+      meshRef.current.rotation.y += rotationSpeedY;
+      meshRef.current.rotation.z += rotationSpeedZ;
     }
   });
 
@@ -46,6 +49,9 @@ const Ball = (props) => {
 };
 
 const BallCanvas = ({ icon }) => {
+  // Randomize rotation speed for each axis, with a slower range
+  const getRandomRotationSpeed = () => Math.random() * 0.005 + 0.001; // Speed between 0.001 and 0.006
+
   return (
     <Canvas
       frameloop='always'
@@ -54,7 +60,12 @@ const BallCanvas = ({ icon }) => {
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />
-        <Ball imgUrl={icon} />
+        <Ball
+          imgUrl={icon}
+          rotationSpeedX={getRandomRotationSpeed()}
+          rotationSpeedY={getRandomRotationSpeed()}
+          rotationSpeedZ={getRandomRotationSpeed()}
+        />
       </Suspense>
 
       <Preload all />
