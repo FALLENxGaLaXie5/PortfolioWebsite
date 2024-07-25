@@ -1,5 +1,5 @@
-import React, { Suspense, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
 import {
   Decal,
   Float,
@@ -10,25 +10,14 @@ import {
 
 import CanvasLoader from "../Loader";
 
-// Ball component with rotation speed props for each axis
-const Ball = ({ imgUrl, rotationSpeedX, rotationSpeedY, rotationSpeedZ }) => {
-  const [decal] = useTexture([imgUrl]);
-  const meshRef = useRef();
-
-  // Use the useFrame hook to rotate the mesh with the specified speed on all axes
-  useFrame(() => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x += rotationSpeedX;
-      meshRef.current.rotation.y += rotationSpeedY;
-      meshRef.current.rotation.z += rotationSpeedZ;
-    }
-  });
+const Ball = (props) => {
+  const [decal] = useTexture([props.imgUrl]);
 
   return (
     <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
       <ambientLight intensity={0.25} />
       <directionalLight position={[0, 0, 0.05]} />
-      <mesh ref={meshRef} castShadow receiveShadow scale={2.75}>
+      <mesh castShadow receiveShadow scale={2.75}>
         <icosahedronGeometry args={[1, 1]} />
         <meshStandardMaterial
           color='#fff8eb'
@@ -49,9 +38,6 @@ const Ball = ({ imgUrl, rotationSpeedX, rotationSpeedY, rotationSpeedZ }) => {
 };
 
 const BallCanvas = ({ icon }) => {
-  // Randomize rotation speed for each axis, with a slower range
-  const getRandomRotationSpeed = () => Math.random() * 0.005 + 0.001; // Speed between 0.001 and 0.006
-
   return (
     <Canvas
       frameloop='always'
@@ -60,12 +46,7 @@ const BallCanvas = ({ icon }) => {
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />
-        <Ball
-          imgUrl={icon}
-          rotationSpeedX={getRandomRotationSpeed()}
-          rotationSpeedY={getRandomRotationSpeed()}
-          rotationSpeedZ={getRandomRotationSpeed()}
-        />
+        <Ball imgUrl={icon} />
       </Suspense>
 
       <Preload all />
