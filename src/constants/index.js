@@ -198,7 +198,7 @@ const experiences = [
     company_name: "i3 Corps",
     icon: i3,
     iconBg: "#E6DEDD",
-    date: "Aug 2021 - Sept 2022",
+    date: "Aug 2021 - Aug 2022",
     points: [
       "Developed virutal reality and 3D training solutions for defense clients.",
       "Collaborated with teams of software developers, 3D modelers, 2D arists, product owners and defense stakeholders.",
