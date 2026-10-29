@@ -16,7 +16,7 @@
 }
 
 @utility bg-hero-pattern {
-  background-image: url("./assets/herobg.png");
+  background-image: url("./assets/herobg.webp");
 }
 
 @layer base {

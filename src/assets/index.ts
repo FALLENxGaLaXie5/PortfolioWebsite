@@ -1,8 +1,8 @@
 import logo from "./logo.svg";
-import backend from "./backend.png";
-import web from "./web.png";
-import game from "./game.png"
-import soldier from "./soldier.png"
+import backend from "./backend.webp";
+import web from "./web.webp";
+import game from "./game.webp"
+import soldier from "./soldier.webp"
 import chip from "./chip.svg";
 import github from "./github.png";
 import menu from "./menu.svg";
@@ -20,30 +20,30 @@ import reactjs from "./tech/reactjs.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import unity from "./tech/unity.png";
-import csharp from "./tech/csharp.png";
-import unreal from "./tech/unreal.png";
+import csharp from "./tech/csharp.webp";
+import unreal from "./tech/unreal.webp";
 import cplusplus from "./tech/cplusplus.png";
 import flutter from "./tech/flutter.png";
 import dart from "./tech/dart.png";
-import python from "./tech/python.png";
-import godot from "./tech/godot.png";
-import tak from "./tech/tak.png";
+import python from "./tech/python.webp";
+import godot from "./tech/godot.webp";
+import tak from "./tech/tak.webp";
 
-import sandbox from "./company/sandbox.png";
+import sandbox from "./company/sandbox.webp";
 import i3 from "./company/i3.jpg";
-import navair from "./company/navair.png";
-import empact from "./company/empact.png";
+import navair from "./company/navair.webp";
+import empact from "./company/empact.webp";
 
-import bonkers from "./bonkers.png";
-import shark from "./shark.png";
-import cow from "./cow.png";
+import bonkers from "./bonkers.webp";
+import shark from "./shark.webp";
+import cow from "./cow.webp";
 import i3trainer from "./i3trainer.jpg";
-import onemorenight from "./onemorenight.png";
-import ammo from "./ammo.png";
-import spark from "./spark.png";
-import portfolio from "./portfolio.png";
-import thesis from "./thesis.png";
-import language from "./language.png";
+import onemorenight from "./onemorenight.webp";
+import ammo from "./ammo.webp";
+import spark from "./spark.webp";
+import portfolio from "./portfolio.webp";
+import thesis from "./thesis.webp";
+import language from "./language.webp";
 
 export {
   logo,
