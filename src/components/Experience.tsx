@@ -241,8 +241,8 @@ const Experience = () => {
   const [track, setTrack] = useState<Track>("civilian");
   const tabRefs = useRef<Partial<Record<Track, HTMLButtonElement | null>>>({});
   const baseId = useId();
-  // From lg up both tracks show side by side and the tabs are hidden.
-  const sideBySide = useMediaQuery("(min-width: 1024px)");
+  // From 900px up both tracks show side by side and the tabs are hidden.
+  const sideBySide = useMediaQuery("(min-width: 900px)");
 
   const tabId = (id: Track) => `${baseId}-tab-${id}`;
   const panelId = (id: Track) => `${baseId}-panel-${id}`;
@@ -309,7 +309,7 @@ const Experience = () => {
         </motion.div>
       )}
 
-      <div className='mt-10 grid grid-cols-1 gap-12 sm:mt-12 lg:mt-16 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-12 xl:gap-16'>
+      <div className='mt-10 grid grid-cols-1 gap-12 sm:mt-12 min-[900px]:mt-16 min-[900px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] min-[900px]:gap-8 xl:gap-16'>
         <div
           {...panelProps("civilian")}
           className={sideBySide || track === "civilian" ? "min-w-0" : "hidden"}
