@@ -1,7 +1,6 @@
 import {
   mobile,
   backend,
-  creator,
   web,
   game,
   soldier,
@@ -10,23 +9,14 @@ import {
   html,
   css,
   reactjs,
-  redux,
   tailwind,
   nodejs,
   mongodb,
   git,
   figma,
   docker,
-  meta,
-  starbucks,
   sandbox,
   navair,
-  tesla,
-  shopify,
-  carrent,
-  jobit,
-  tripguide,
-  threejs,
   i3,
   unity,
   csharp,
@@ -49,7 +39,59 @@ import {
   language,
 } from "../assets";
 
-export const navLinks = [
+export interface NavLink {
+  id: string;
+  title: string;
+}
+
+export interface Service {
+  title: string;
+  icon: string;
+}
+
+export interface Technology {
+  name: string;
+  icon: string;
+}
+
+export interface Experience {
+  title: string;
+  company_name: string;
+  icon: string;
+  iconBg: string;
+  date: string;
+  points: string[];
+}
+
+export interface Testimonial {
+  testimonial: string;
+  name: string;
+  designation: string;
+  company: string;
+  image: string;
+}
+
+/** A Tailwind/CSS class from index.css that colours a project tag. */
+export type TagColor =
+  | "blue-text-gradient"
+  | "green-text-gradient"
+  | "pink-text-gradient"
+  | "orange-text-gradient";
+
+export interface ProjectTag {
+  name: string;
+  color: TagColor;
+}
+
+export interface Project {
+  name: string;
+  description: string;
+  tags: ProjectTag[];
+  image: string;
+  source_code_link: string;
+}
+
+export const navLinks: NavLink[] = [
   {
     id: "about",
     title: "About",
@@ -64,7 +106,7 @@ export const navLinks = [
   },
 ];
 
-const services = [
+const services: Service[] = [
   {
     title: "Game Developer",
     icon: game,
@@ -83,7 +125,7 @@ const services = [
   },
 ];
 
-const technologies = [
+const technologies: Technology[] = [
   {
     name: "Unity",
     icon: unity,
@@ -166,7 +208,7 @@ const technologies = [
   },
 ];
 
-const experiences = [
+const experiences: Experience[] = [
   {
     title: "Game Programming and Math Instructor",
     company_name: "Sandbox4Kids",
@@ -234,7 +276,7 @@ const experiences = [
   },
 ];
 
-const testimonials = [
+const testimonials: Testimonial[] = [
   {
     testimonial:
       "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
@@ -245,7 +287,7 @@ const testimonials = [
   },
 ];
 
-const projects = [
+const projects: Project[] = [
   {
     name: "Bonkers",
     description:

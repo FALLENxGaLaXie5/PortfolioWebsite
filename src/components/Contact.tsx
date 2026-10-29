@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
+import { motion } from "motion/react";
 import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
@@ -8,7 +9,7 @@ import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
 const Contact = () => {
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -17,7 +18,9 @@ const Contact = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { target } = e;
     const { name, value } = target;
 
@@ -27,14 +30,29 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const {
+      VITE_APP_EMAILJS_SERVICE_ID: serviceId,
+      VITE_APP_EMAILJS_TEMPLATE_ID: templateId,
+      VITE_APP_EMAILJS_PUBLIC_KEY: publicKey,
+    } = import.meta.env;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error(
+        "EmailJS is not configured: set VITE_APP_EMAILJS_SERVICE_ID, VITE_APP_EMAILJS_TEMPLATE_ID and VITE_APP_EMAILJS_PUBLIC_KEY.",
+      );
+      alert("Ahh, something went wrong. Please try again.");
+      return;
+    }
+
     setLoading(true);
 
     emailjs
       .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         {
           from_name: form.name,
           to_name: "Joshua",
@@ -42,7 +60,7 @@ const Contact = () => {
           to_email: "steward.joshua@rocketmail.com",
           message: form.message,
         },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        publicKey,
       )
       .then(
         () => {
@@ -55,7 +73,7 @@ const Contact = () => {
             message: "",
           });
         },
-        (error) => {
+        (error: unknown) => {
           setLoading(false);
           console.error(error);
 
@@ -88,7 +106,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-hidden border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -99,7 +117,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-hidden border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -110,13 +128,13 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-hidden border-none font-medium'
             />
           </label>
 
           <button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
+            className='bg-tertiary py-3 px-8 rounded-xl outline-hidden w-fit text-white font-bold shadow-md shadow-primary'
           >
             {loading ? "Sending..." : "Send"}
           </button>

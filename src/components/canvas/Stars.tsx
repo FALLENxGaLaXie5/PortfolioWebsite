@@ -1,13 +1,22 @@
 import { useState, useRef, Suspense } from "react";
+import type { ComponentProps } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
-import * as random from "maath/random/dist/maath-random.esm";
+import { inSphere } from "maath/random";
+import type { Points as ThreePoints } from "three";
 
-const Stars = (props) => {
-  const ref = useRef();
-  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.2 }));
+type StarsProps = Omit<ComponentProps<typeof Points>, "ref" | "positions">;
 
-  useFrame((state, delta) => {
+const Stars = (props: StarsProps) => {
+  const ref = useRef<ThreePoints>(null);
+  // 5000 floats = 1666 xyz points (the original used 5000, which isn't a
+  // multiple of 3; kept as-is so the star field looks identical).
+  const [sphere] = useState(
+    () => inSphere(new Float32Array(4998), { radius: 1.2 }) as Float32Array,
+  );
+
+  useFrame((_state, delta) => {
+    if (!ref.current) return;
     ref.current.rotation.x -= delta / 10;
     ref.current.rotation.y -= delta / 15;
   });
