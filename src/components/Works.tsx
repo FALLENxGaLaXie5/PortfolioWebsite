@@ -101,9 +101,7 @@ const Works = () => {
         variants={fadeIn("", "", 0.1, 0.8)}
         className='mt-6 max-w-[68ch] text-base leading-[1.75] text-secondary sm:text-lg sm:leading-[1.8]'
       >
-        A selection of professional and personal work, from production
-        defense software and applied ML to shipped games and game jams. Links
-        go to source code, store pages, or product pages where available.
+        Professional work, research, and games I've shipped.
       </motion.p>
 
       <ul className='mt-12 grid grid-cols-1 gap-5 sm:mt-16 md:grid-cols-2 md:gap-6 xl:grid-cols-3'>

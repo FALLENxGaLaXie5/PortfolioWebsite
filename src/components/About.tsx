@@ -41,7 +41,7 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 0.8)}
         className='mt-6 max-w-[68ch] text-base leading-[1.75] text-secondary sm:text-lg sm:leading-[1.8]'
       >
-        I'm a full stack engineer who builds software that matters to the people using it: production AI capabilities like RAG, agentic workflows, MCP tooling, and evaluation frameworks; scalable distributed systems across React, .NET, and the cloud; and immersive 3D and VR training for defense. I've built safety-critical range software and served as a Missile Flight Safety Officer, I'm a Marine Corps officer in the Reserve, and my master's thesis applied reinforcement learning to procedural level generation. I still make games on the side. Browse my work below, and reach out if you'd like to work together.
+        I build production AI, distributed systems, and immersive 3D software that matters to the people using it. I'm also a Marine Corps officer, a former Missile Flight Safety Officer, and a lifelong game developer.
       </motion.p>
 
       <ul className='mt-12 grid grid-cols-1 gap-4 xs:grid-cols-2 sm:mt-16 sm:gap-6 lg:grid-cols-4'>

@@ -230,9 +230,9 @@ const experiences: Experience[] = [
     iconBg: "#383E56",
     date: "Apr 2025 – Present",
     points: [
-      "Ship full-stack features for EMPACT with React/TypeScript, .NET/C#, PostgreSQL/Marten, Docker, Kubernetes, and Azure.",
-      "Build production AI capabilities, including RAG, agentic workflows, MCP tooling, and evaluation frameworks.",
-      "Delivered rapid prototypes to validate new products, including a 60-day mobile go-to-market initiative.",
+      "Ship full-stack features for EMPACT across React, .NET, PostgreSQL, Kubernetes, and Azure.",
+      "Build production AI: RAG, agentic workflows, MCP tooling, and evals.",
+      "Delivered rapid prototypes, including a 60-day mobile go-to-market initiative.",
     ],
   },
   {
@@ -242,9 +242,9 @@ const experiences: Experience[] = [
     iconBg: "#E6DEDD",
     date: "Jan 2023 – Apr 2025",
     points: [
-      "Developed and maintained in-house Sea Range Safety software, including 3D data and orientation validation tools and infrastructure as code.",
+      "Built Sea Range Safety software, including 3D data validation tools and infrastructure as code.",
       "Served as Missile Flight Safety Officer for the Sea Range Safety team.",
-      "Provided cross-functional software development support as the team's tools subject matter expert.",
+      "Tools subject matter expert for cross-functional software teams.",
     ],
   },
   {
@@ -256,8 +256,8 @@ const experiences: Experience[] = [
     points: [
       "Developed virtual reality and 3D training solutions in Unity for defense clients.",
       "Served as lead developer and Scrum Master for the primary project.",
-      "Worked with .NET and web developers to integrate Unity training projects into full-stack client applications.",
-      "Sat on the hiring panel for new software developers, reviewing interview projects and writing interview materials.",
+      "Integrated Unity trainers into .NET and web client applications.",
+      "Sat on the hiring panel, reviewing interview projects and writing interview materials.",
     ],
   },
   {
@@ -267,7 +267,7 @@ const experiences: Experience[] = [
     iconBg: "#383E56",
     date: "Apr 2015 – Dec 2017",
     points: [
-      "Created Unity and Unreal Engine curriculum covering game design, game programming patterns, and game architecture.",
+      "Wrote Unity and Unreal Engine curriculum on game design, programming patterns, and architecture.",
       "Taught Unity and Unreal Engine game design courses for kids ages 8 to 16.",
     ],
   },
@@ -361,7 +361,7 @@ const projects: Project[] = [
   {
     name: "EMPACT",
     description:
-      "HTX Labs' IL4-accredited mission readiness platform for the Department of War, unifying immersive training, guided execution, and performance capture. I build full-stack features and production AI capabilities across the product.",
+      "HTX Labs' IL4-accredited mission readiness platform. I build its full-stack features and production AI capabilities.",
     tags: [
       {
         name: "react",
@@ -383,7 +383,7 @@ const projects: Project[] = [
   {
     name: "Master's Thesis: ML-Based Level Generation",
     description:
-      "Used reinforcement learning to procedurally generate game levels, backed by original thesis research. Built with Unity ML-Agents, using my game Bonkers as the test bed.",
+      "Reinforcement learning (Unity ML-Agents) that procedurally generates game levels, tested on my game Bonkers.",
     tags: [
       {
         name: "dotnet",
@@ -455,7 +455,7 @@ const projects: Project[] = [
   {
     name: "Bonkers",
     description:
-      "Top-down 2D puzzle game with local and networked multiplayer; later the test bed for my ML thesis.",
+      "Top-down 2D puzzle game with local and networked multiplayer; test bed for my ML thesis.",
     tags: [
       {
         name: "unity",
