@@ -23,7 +23,7 @@ const ServiceCard = ({ index, title, icon }) => (
       >
         <img
           src={icon}
-          alt='web-development'
+          alt=''
           className='w-16 h-16 object-contain'
         />
 
@@ -47,9 +47,10 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        I'm an experienced software engineer with experience in various game development technologies and have created standalone applications in various mobile and web development frameworks.
-        I've found excuses to make video games as a hobby throughout my college and now post college career, and more recently have begun contributing to in-house military applications as part of my Reserve Marine Corps Career.
-        I crave impact and meaningful work, so please browse my favorite projects and experiences below, and let me know if you want to work together!
+        I'm a full stack engineer at HTX Labs, building product features and production AI capabilities (RAG, agentic workflows, MCP tooling, and evals) for EMPACT, an IL4-accredited mission readiness platform.
+        Before that, I built Sea Range Safety software at NAVAIR, where I also served as a Missile Flight Safety Officer, and developed VR and 3D training at i3 Corps.
+        I'm a Marine Corps officer in the Selected Marine Corps Reserve, wrote my master's thesis on reinforcement-learning-based level generation, and still make games on the side.
+        Browse my work below, and reach out if you'd like to work together.
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>
