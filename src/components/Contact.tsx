@@ -5,6 +5,8 @@ import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
+import LazyMount from "./LazyMount";
+import Spinner from "./Spinner";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
@@ -145,7 +147,12 @@ const Contact = () => {
         variants={slideIn("right", "tween", 0.2, 1)}
         className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
       >
-        <EarthCanvas />
+        <LazyMount
+          className='size-full'
+          fallback={<div className='flex size-full items-center justify-center'><Spinner /></div>}
+        >
+          <EarthCanvas />
+        </LazyMount>
       </motion.div>
     </div>
   );

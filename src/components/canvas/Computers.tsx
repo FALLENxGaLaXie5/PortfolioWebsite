@@ -1,16 +1,19 @@
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader, { SceneReady } from "../Loader";
+import { useInView } from "../../hooks/useInView";
+import { useCoarsePointer, useMediaQuery } from "../../hooks/useMediaQuery";
 
 const MODEL_URL = "./desktop_pc/scene.gltf";
 
 interface ComputersProps {
-  isMobile: boolean;
+  /** Canvas sits below the hero text (phones/tablets) instead of behind it. */
+  compact: boolean;
 }
 
-const Computers = ({ isMobile }: ComputersProps) => {
+const Computers = ({ compact }: ComputersProps) => {
   const computer = useGLTF(MODEL_URL);
 
   return (
@@ -28,56 +31,46 @@ const Computers = ({ isMobile }: ComputersProps) => {
       <pointLight position={[-10, -10, -10]} intensity={2} />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
+        scale={compact ? 0.62 : 0.75}
+        position={compact ? [0, -2.1, -1.2] : [0, -3.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
   );
 };
 
-const MOBILE_QUERY = "(max-width: 500px)";
+// Matches the `lg` breakpoint where Hero switches the canvas from in-flow to
+// a full-bleed background.
+const COMPACT_QUERY = "(max-width: 1023px)";
 
 const ComputersCanvas = () => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const handleReady = useCallback(() => setLoaded(true), []);
-
-  // Read the media query on first render instead of in an effect, so the
-  // model doesn't render once at desktop size and then jump on mobile.
-  const [isMobile, setIsMobile] = useState(
-    () => window.matchMedia(MOBILE_QUERY).matches,
-  );
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(MOBILE_QUERY);
-
-    const handleMediaQueryChange = (event: MediaQueryListEvent) => {
-      setIsMobile(event.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
-  }, []);
+  const compact = useMediaQuery(COMPACT_QUERY);
+  const coarse = useCoarsePointer();
+  const inView = useInView(wrapperRef);
 
   return (
-    <div className='relative w-full h-full'>
+    <div ref={wrapperRef} className='relative size-full'>
       <Canvas
-        frameloop='demand'
+        // Nothing animates on its own; frames are only drawn on drag/resize.
+        frameloop={inView ? "demand" : "never"}
         shadows='percentage'
-        dpr={[1, 2]}
+        dpr={coarse || compact ? [1, 1.5] : [1, 2]}
         camera={{ position: [20, 3, 5], fov: 25 }}
-        gl={{ preserveDrawingBuffer: true }}
+        aria-hidden='true'
       >
         <Suspense fallback={null}>
-          <OrbitControls
-            enableZoom={false}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
-          />
-          <Computers isMobile={isMobile} />
+          {/* OrbitControls blocks touch scrolling (touch-action: none); mouse only. */}
+          {!coarse && (
+            <OrbitControls
+              enableZoom={false}
+              maxPolarAngle={Math.PI / 2}
+              minPolarAngle={Math.PI / 2}
+            />
+          )}
+          <Computers compact={compact} />
           <SceneReady onReady={handleReady} />
         </Suspense>
 

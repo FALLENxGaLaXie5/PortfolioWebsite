@@ -2,6 +2,8 @@ import { motion } from "motion/react";
 
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
+import LazyMount from "./LazyMount";
+import Spinner from "./Spinner";
 
 const Hero = () => {
   return (
@@ -24,7 +26,13 @@ const Hero = () => {
         </div>
       </div>
 
-      <ComputersCanvas />
+      <LazyMount
+        className='absolute inset-0'
+        rootMargin='0px'
+        fallback={<div className='flex size-full items-center justify-center'><Spinner /></div>}
+      >
+        <ComputersCanvas />
+      </LazyMount>
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>

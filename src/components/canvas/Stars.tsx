@@ -5,6 +5,9 @@ import { Points, PointMaterial, Preload } from "@react-three/drei";
 import { inSphere } from "maath/random";
 import type { Points as ThreePoints } from "three";
 
+import { useInView } from "../../hooks/useInView";
+import { usePrefersReducedMotion } from "../../hooks/useMediaQuery";
+
 type StarsProps = Omit<ComponentProps<typeof Points>, "ref" | "positions">;
 
 const Stars = (props: StarsProps) => {
@@ -37,9 +40,16 @@ const Stars = (props: StarsProps) => {
 };
 
 const StarsCanvas = () => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(wrapperRef);
+  const reducedMotion = usePrefersReducedMotion();
+
+  // Reduced motion: draw the field once and leave it still.
+  const frameloop = !inView ? "never" : reducedMotion ? "demand" : "always";
+
   return (
-    <div className='w-full h-auto absolute inset-0 z-[-1]'>
-      <Canvas camera={{ position: [0, 0, 1] }}>
+    <div ref={wrapperRef} className='absolute inset-0 -z-10' aria-hidden='true'>
+      <Canvas frameloop={frameloop} dpr={[1, 1.5]} camera={{ position: [0, 0, 1] }}>
         <Suspense fallback={null}>
           <Stars />
         </Suspense>

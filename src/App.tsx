@@ -1,4 +1,6 @@
-import { About, Contact, Experience, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
+import { About, Contact, Experience, Hero, Navbar, Tech, Works } from "./components";
+import { StarsCanvas } from "./components/canvas";
+import LazyMount from "./components/LazyMount";
 
 const App = () => {
   return (
@@ -15,7 +17,9 @@ const App = () => {
       {/*<Feedbacks />*/}
       <div className='relative z-0'>
         <Contact />
-        <StarsCanvas />
+        <LazyMount className='absolute inset-0 -z-10' fallback={null}>
+          <StarsCanvas />
+        </LazyMount>
       </div>
     </div>
   );

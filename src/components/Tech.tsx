@@ -1,26 +1,29 @@
-import { useRef } from "react";
-
-import { BallView, BallViewsCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { technologies } from "../constants";
+import { TechBalls } from "./canvas";
+import LazyMount from "./LazyMount";
+import Spinner from "./Spinner";
+import { TECH_GRID_CLASS } from "./techGrid";
 
-const Tech = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+/** Same grid as the real balls, so nothing shifts when the canvas loads. */
+const TechPlaceholder = () => (
+  <ul className={TECH_GRID_CLASS}>
+    {technologies.map((technology) => (
+      <li
+        key={technology.name}
+        className='flex aspect-square items-center justify-center'
+      >
+        <span className='sr-only'>{technology.name}</span>
+        <Spinner className='opacity-60' />
+      </li>
+    ))}
+  </ul>
+);
 
-  return (
-    <div ref={containerRef} className='relative'>
-      <div className='flex flex-row flex-wrap justify-center gap-10'>
-        {technologies.map((technology) => (
-          <BallView
-            key={technology.name}
-            className='w-28 h-28'
-            icon={technology.icon}
-          />
-        ))}
-      </div>
-      <BallViewsCanvas eventSource={containerRef} />
-    </div>
-  );
-};
+const Tech = () => (
+  <LazyMount fallback={<TechPlaceholder />}>
+    <TechBalls />
+  </LazyMount>
+);
 
 export default SectionWrapper(Tech, "");
