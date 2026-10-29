@@ -8,12 +8,19 @@ import { useCoarsePointer, useMediaQuery } from "../../hooks/useMediaQuery";
 
 const MODEL_URL = "./desktop_pc/scene.gltf";
 
-interface ComputersProps {
-  /** Canvas sits below the hero text (phones/tablets) instead of behind it. */
-  compact: boolean;
-}
+/**
+ * phone/tablet: the canvas sits below the hero text in its own block;
+ * desktop: full-bleed behind the text.
+ */
+type Layout = "phone" | "tablet" | "desktop";
 
-const Computers = ({ compact }: ComputersProps) => {
+const MODEL_FRAMING: Record<Layout, { scale: number; position: [number, number, number] }> = {
+  phone: { scale: 0.5, position: [0, -1.55, -0.9] },
+  tablet: { scale: 0.62, position: [0, -1.85, -1.1] },
+  desktop: { scale: 0.75, position: [0, -3.25, -1.5] },
+};
+
+const Computers = ({ layout }: { layout: Layout }) => {
   const computer = useGLTF(MODEL_URL);
 
   return (
@@ -31,8 +38,8 @@ const Computers = ({ compact }: ComputersProps) => {
       <pointLight position={[-10, -10, -10]} intensity={2} />
       <primitive
         object={computer.scene}
-        scale={compact ? 0.5 : 0.75}
-        position={compact ? [0, -1.55, -0.9] : [0, -3.25, -1.5]}
+        scale={MODEL_FRAMING[layout].scale}
+        position={MODEL_FRAMING[layout].position}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -48,6 +55,8 @@ const ComputersCanvas = () => {
   const [loaded, setLoaded] = useState(false);
   const handleReady = useCallback(() => setLoaded(true), []);
   const compact = useMediaQuery(COMPACT_QUERY);
+  const phone = useMediaQuery("(max-width: 639px)");
+  const layout: Layout = phone ? "phone" : compact ? "tablet" : "desktop";
   const coarse = useCoarsePointer();
   const inView = useInView(wrapperRef);
 
@@ -70,7 +79,7 @@ const ComputersCanvas = () => {
               minPolarAngle={Math.PI / 2}
             />
           )}
-          <Computers compact={compact} />
+          <Computers layout={layout} />
           <SceneReady onReady={handleReady} />
         </Suspense>
 
