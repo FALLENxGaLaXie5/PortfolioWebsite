@@ -19,7 +19,7 @@ const Hero = () => {
             Hi, I'm <span className='text-[#915EFF]'>Josh</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I build full-stack and AI capabilities for defense software at HTX Labs, with roots in game development and the Marine Corps.
+            I build impactful distributed systems, immersive games, and agentic AI capabilities, with deep roots in game development and the U.S. Marine Corps.
           </p>
         </div>
       </div>

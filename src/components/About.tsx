@@ -41,10 +41,7 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        I'm a full stack engineer at HTX Labs, building product features and production AI capabilities (RAG, agentic workflows, MCP tooling, and evals) for EMPACT, an IL4-accredited mission readiness platform.
-        Before that, I built Sea Range Safety software at NAVAIR, where I also served as a Missile Flight Safety Officer, and developed VR and 3D training at i3 Corps.
-        I'm a Marine Corps officer in the Selected Marine Corps Reserve, wrote my master's thesis on reinforcement-learning-based level generation, and still make games on the side.
-        Browse my work below, and reach out if you'd like to work together.
+        I'm a full stack engineer who builds software that matters to the people using it: production AI capabilities like RAG, agentic workflows, MCP tooling, and evaluation frameworks; scalable distributed systems across React, .NET, and the cloud; and immersive 3D and VR training for defense. I've built safety-critical range software and served as a Missile Flight Safety Officer, I'm a Marine Corps officer in the Reserve, and my master's thesis applied reinforcement learning to procedural level generation. I still make games on the side. Browse my work below, and reach out if you'd like to work together.
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>
