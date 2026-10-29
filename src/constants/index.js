@@ -220,6 +220,18 @@ const experiences = [
       "Providing cross-functional software development support as tools subject matter expert.",
     ],
   },
+  {
+    title: "Full Stack Engineer and Rapid Prototype Engineer",
+    company_name: "HTX Labs",
+    icon: backend,
+    iconBg: "#383E56",
+    date: "Apr 2025 - Present",
+    points: [
+      "Shipping full-stack product features with React/TypeScript, .NET/C#, PostgreSQL, Docker, Kubernetes, and Azure.",
+      "Building production AI capabilities including RAG, agentic workflows, MCP tooling, and evaluation frameworks.",
+      "Delivered rapid prototypes to validate new products, including a 60-day mobile go-to-market initiative.",
+    ],
+  },
 ];
 
 const testimonials = [
