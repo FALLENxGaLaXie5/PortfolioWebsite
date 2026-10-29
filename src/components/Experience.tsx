@@ -2,50 +2,44 @@ import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
-import { motion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 
 import "react-vertical-timeline-component/style.min.css";
 
-import { styles } from "../styles";
 import { experiences, type Experience as ExperienceItem } from "../constants";
 import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
+import SectionHeader from "./SectionHeader";
 
 const ExperienceCard = ({ experience }: { experience: ExperienceItem }) => {
   return (
     <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
+      textClassName='experience-card'
       date={experience.date}
       iconStyle={{ background: experience.iconBg }}
       icon={
-        <div className='flex justify-center items-center w-full h-full'>
+        <div className='flex size-full items-center justify-center'>
           <img
             src={experience.icon}
             alt={experience.company_name}
-            className='w-[60%] h-[60%] object-contain'
+            width={40}
+            height={40}
+            loading='lazy'
+            decoding='async'
+            className='size-[60%] object-contain'
           />
         </div>
       }
     >
-      <div>
-        <h3 className='text-white text-[24px] font-bold'>{experience.title}</h3>
-        <p
-          className='text-secondary text-[16px] font-semibold'
-          style={{ margin: 0 }}
-        >
-          {experience.company_name}
-        </p>
-      </div>
+      <h3 className='text-h3 font-bold text-white'>{experience.title}</h3>
+      <p className='mt-1 text-base font-semibold text-secondary'>
+        {experience.company_name}
+      </p>
 
-      <ul className='mt-5 list-disc ml-5 space-y-2'>
+      <ul className='mt-4 list-disc space-y-2 pl-5 marker:text-accent'>
         {experience.points.map((point, index) => (
           <li
             key={`experience-point-${index}`}
-            className='text-white-100 text-[14px] pl-1 tracking-wider'
+            className='text-[0.9375rem] leading-relaxed text-white-100 sm:text-base'
           >
             {point}
           </li>
@@ -56,19 +50,14 @@ const ExperienceCard = ({ experience }: { experience: ExperienceItem }) => {
 };
 
 const Experience = () => {
+  const reducedMotion = useReducedMotion();
+
   return (
     <>
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>
-          Where I've worked
-        </p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>
-          Work Experience.
-        </h2>
-      </motion.div>
+      <SectionHeader eyebrow="Where I've worked" title='Work Experience.' align='center' />
 
-      <div className='mt-20 flex flex-col'>
-        <VerticalTimeline>
+      <div className='mt-12 flex flex-col sm:mt-16'>
+        <VerticalTimeline animate={!reducedMotion}>
           {experiences.map((experience, index) => (
             <ExperienceCard
               key={`experience-${index}`}

@@ -1,54 +1,65 @@
 import { motion } from "motion/react";
 
-import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 import LazyMount from "./LazyMount";
 import Spinner from "./Spinner";
+import { EASE_OUT } from "../utils/motion";
 
 const Hero = () => {
   return (
-    <section className={`relative w-full h-screen mx-auto`}>
-      <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
-      >
-        <div className='flex flex-col justify-center items-center mt-5'>
-          <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
-          <div className='w-1 sm:h-80 h-40 violet-gradient' />
+    <section
+      aria-labelledby='hero-title'
+      className='relative isolate flex min-h-[100svh] flex-col overflow-hidden lg:min-h-[max(100svh,44rem)]'
+    >
+      <div className='container-page relative z-10 flex gap-4 pt-28 sm:gap-6 sm:pt-32 lg:pt-36'>
+        {/* Decorative accent rail */}
+        <div aria-hidden='true' className='mt-3 flex flex-col items-center sm:mt-5'>
+          <div className='size-4 rounded-full bg-accent shadow-[0_0_24px_4px_rgb(145_94_255/0.6)] sm:size-5' />
+          <div className='violet-gradient h-32 w-1 sm:h-64 lg:h-80' />
         </div>
 
-        <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#915EFF]'>Josh</span>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: EASE_OUT }}
+        >
+          <h1 id='hero-title' className='text-display font-black text-white'>
+            Hi, I'm <span className='text-accent'>Josh</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+          <p className='mt-4 max-w-[34ch] text-lead font-medium text-lavender sm:mt-5 lg:max-w-[40ch]'>
             I build impactful distributed systems, immersive games, and agentic AI capabilities, with deep roots in game development and the U.S. Marine Corps.
           </p>
-        </div>
+        </motion.div>
       </div>
 
+      {/*
+        Phones/tablets: the PC sits in its own block below the text, so the
+        two never overlap. Desktop: full-bleed behind the text, as before.
+      */}
       <LazyMount
-        className='absolute inset-0'
+        className='relative min-h-[18rem] flex-1 lg:absolute lg:inset-0 lg:min-h-0'
         rootMargin='0px'
-        fallback={<div className='flex size-full items-center justify-center'><Spinner /></div>}
+        fallback={
+          <div className='flex size-full items-center justify-center'>
+            <Spinner />
+          </div>
+        }
       >
         <ComputersCanvas />
       </LazyMount>
 
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
-        <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className='w-3 h-3 rounded-full bg-secondary mb-1'
-            />
-          </div>
+      <div className='pointer-events-none absolute inset-x-0 bottom-8 z-10 hidden justify-center lg:flex'>
+        <a
+          href='#about'
+          aria-label='Scroll to About'
+          className='pointer-events-auto flex h-16 w-9 items-start justify-center rounded-3xl border-2 border-secondary/70 p-2 transition-colors hover:border-white'
+        >
+          <motion.span
+            aria-hidden='true'
+            animate={{ y: [0, 24, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
+            className='block size-3 rounded-full bg-secondary'
+          />
         </a>
       </div>
     </section>

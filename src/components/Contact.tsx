@@ -3,12 +3,17 @@ import type { ChangeEvent, FormEvent } from "react";
 import { motion } from "motion/react";
 import emailjs from "@emailjs/browser";
 
-import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import LazyMount from "./LazyMount";
 import Spinner from "./Spinner";
+import SectionHeader from "./SectionHeader";
 import { SectionWrapper } from "../hoc";
-import { slideIn } from "../utils/motion";
+import { fadeIn } from "../utils/motion";
+
+const fieldClass =
+  "w-full rounded-control border border-line bg-tertiary px-4 py-3.5 text-base font-medium text-white placeholder:text-muted transition-colors hover:border-line-strong focus:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 sm:px-5";
+
+const labelClass = "mb-2.5 block text-base font-medium text-white";
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -85,58 +90,74 @@ const Contact = () => {
   };
 
   return (
-    <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
-    >
+    <div className='grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-10'>
       <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
+        variants={fadeIn("right", "", 0.1, 0.7)}
+        className='card-surface p-5 xs:p-6 sm:p-8 lg:p-10'
       >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h2 className={styles.sectionHeadText}>Contact.</h2>
+        <SectionHeader eyebrow='Get in touch' title='Contact.' />
 
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
+          className='mt-8 flex flex-col gap-6 sm:mt-10'
+          aria-busy={loading}
         >
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your name</span>
+          <div>
+            <label htmlFor='contact-name' className={labelClass}>
+              Your name
+            </label>
             <input
+              id='contact-name'
               type='text'
               name='name'
+              autoComplete='name'
+              required
               value={form.name}
               onChange={handleChange}
               placeholder="What's your name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-hidden border-none font-medium'
+              className={fieldClass}
             />
-          </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your email</span>
+          </div>
+          <div>
+            <label htmlFor='contact-email' className={labelClass}>
+              Your email
+            </label>
             <input
+              id='contact-email'
               type='email'
               name='email'
+              autoComplete='email'
+              inputMode='email'
+              spellCheck={false}
+              required
               value={form.email}
               onChange={handleChange}
               placeholder="What's your email address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-hidden border-none font-medium'
+              className={fieldClass}
             />
-          </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your message</span>
+          </div>
+          <div>
+            <label htmlFor='contact-message' className={labelClass}>
+              Your message
+            </label>
             <textarea
-              rows={7}
+              id='contact-message'
+              rows={6}
               name='message'
+              autoComplete='off'
+              required
               value={form.message}
               onChange={handleChange}
               placeholder='What would you like to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-hidden border-none font-medium'
+              className={`${fieldClass} min-h-36 resize-y`}
             />
-          </label>
+          </div>
 
           <button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-hidden w-fit text-white font-bold shadow-md shadow-primary'
+            disabled={loading}
+            className='inline-flex min-h-12 w-full items-center justify-center rounded-control bg-accent-strong px-8 text-base font-bold text-white shadow-glow transition-[background-color,transform] duration-200 hover:bg-accent active:scale-[0.98] disabled:cursor-wait disabled:opacity-70 sm:w-fit'
           >
             {loading ? "Sending..." : "Send"}
           </button>
@@ -144,12 +165,16 @@ const Contact = () => {
       </motion.div>
 
       <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        variants={fadeIn("left", "", 0.2, 0.7)}
+        className='h-[300px] xs:h-[360px] md:h-[460px] lg:h-auto lg:min-h-[560px]'
       >
         <LazyMount
           className='size-full'
-          fallback={<div className='flex size-full items-center justify-center'><Spinner /></div>}
+          fallback={
+            <div className='flex size-full items-center justify-center'>
+              <Spinner />
+            </div>
+          }
         >
           <EarthCanvas />
         </LazyMount>

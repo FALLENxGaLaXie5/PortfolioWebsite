@@ -31,8 +31,8 @@ const Computers = ({ compact }: ComputersProps) => {
       <pointLight position={[-10, -10, -10]} intensity={2} />
       <primitive
         object={computer.scene}
-        scale={compact ? 0.62 : 0.75}
-        position={compact ? [0, -2.1, -1.2] : [0, -3.25, -1.5]}
+        scale={compact ? 0.5 : 0.75}
+        position={compact ? [0, -1.55, -0.9] : [0, -3.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -52,7 +52,7 @@ const ComputersCanvas = () => {
   const inView = useInView(wrapperRef);
 
   return (
-    <div ref={wrapperRef} className='relative size-full'>
+    <div ref={wrapperRef} className='absolute inset-0'>
       <Canvas
         // Nothing animates on its own; frames are only drawn on drag/resize.
         frameloop={inView ? "demand" : "never"}

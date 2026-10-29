@@ -4,9 +4,6 @@ import web from "./web.webp";
 import game from "./game.webp"
 import soldier from "./soldier.webp"
 import chip from "./chip.svg";
-import github from "./github.png";
-import menu from "./menu.svg";
-import close from "./close.svg";
 
 import css from "./tech/css.png";
 import docker from "./tech/docker.png";
@@ -52,9 +49,6 @@ export {
   game,
   soldier,
   chip,
-  github,
-  menu,
-  close,
   css,
   docker,
   figma,

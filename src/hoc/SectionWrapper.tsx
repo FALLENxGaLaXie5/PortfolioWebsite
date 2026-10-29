@@ -1,26 +1,25 @@
 import type { ComponentType } from "react";
 import { motion } from "motion/react";
 
-import { styles } from "../styles";
 import { staggerContainer } from "../utils/motion";
 
-const StarWrapper = (Component: ComponentType, idName: string) =>
+const SectionWrapper = (Component: ComponentType, idName: string) =>
   function HOC() {
     return (
       <motion.section
+        id={idName || undefined}
         variants={staggerContainer()}
         initial='hidden'
         whileInView='show'
-        viewport={{ once: true, amount: 0.25 }}
-        className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+        // Trigger on any overlap (not a fraction of the section): the
+        // Projects section is several screens tall on phones and could never
+        // reach a 25% visible threshold, leaving its content invisible.
+        viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+        className='container-page section-y relative z-0'
       >
-        <span className='hash-span' id={idName}>
-          &nbsp;
-        </span>
-
         <Component />
       </motion.section>
     );
   };
 
-export default StarWrapper;
+export default SectionWrapper;
