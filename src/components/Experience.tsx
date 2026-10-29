@@ -95,7 +95,7 @@ const CivilianTrack = () => {
   const reducedMotion = useReducedMotion();
   return (
     <>
-      <TrackHeading title='Civilian' />
+      <TrackHeading title='Civilian' meta='2015 – Present' />
       <VerticalTimeline layout='1-column-left' animate={!reducedMotion}>
         {experiences.map((experience) => (
           <ExperienceCard

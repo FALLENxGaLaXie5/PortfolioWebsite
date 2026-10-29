@@ -228,7 +228,7 @@ const experiences: Experience[] = [
     company_name: "HTX Labs",
     icon: backend,
     iconBg: "#383E56",
-    date: "Apr 2025 - Present",
+    date: "Apr 2025 – Present",
     points: [
       "Ship full-stack features for EMPACT with React/TypeScript, .NET/C#, PostgreSQL/Marten, Docker, Kubernetes, and Azure.",
       "Build production AI capabilities, including RAG, agentic workflows, MCP tooling, and evaluation frameworks.",
@@ -240,7 +240,7 @@ const experiences: Experience[] = [
     company_name: "Naval Air Warfare Center Weapons Division",
     icon: navair,
     iconBg: "#E6DEDD",
-    date: "Jan 2023 - Apr 2025",
+    date: "Jan 2023 – Apr 2025",
     points: [
       "Developed and maintained in-house Sea Range Safety software, including 3D data and orientation validation tools and infrastructure as code.",
       "Served as Missile Flight Safety Officer for the Sea Range Safety team.",
@@ -252,7 +252,7 @@ const experiences: Experience[] = [
     company_name: "i3 Corps",
     icon: i3,
     iconBg: "#E6DEDD",
-    date: "Aug 2021 - Aug 2022",
+    date: "Aug 2021 – Aug 2022",
     points: [
       "Developed virtual reality and 3D training solutions in Unity for defense clients.",
       "Served as lead developer and Scrum Master for the primary project.",
@@ -265,7 +265,7 @@ const experiences: Experience[] = [
     company_name: "Sandbox4Kids",
     icon: sandbox,
     iconBg: "#383E56",
-    date: "Apr 2015 - Dec 2017",
+    date: "Apr 2015 – Dec 2017",
     points: [
       "Created Unity and Unreal Engine curriculum covering game design, game programming patterns, and game architecture.",
       "Taught Unity and Unreal Engine game design courses for kids ages 8 to 16.",

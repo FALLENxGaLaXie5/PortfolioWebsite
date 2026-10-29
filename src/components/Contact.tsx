@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { motion } from "motion/react";
 import emailjs from "@emailjs/browser";
@@ -16,7 +16,6 @@ const fieldClass =
 const labelClass = "mb-2.5 block text-base font-medium text-white";
 
 const Contact = () => {
-  const formRef = useRef<HTMLFormElement>(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -98,7 +97,6 @@ const Contact = () => {
         <SectionHeader eyebrow='Get in touch' title='Contact.' />
 
         <form
-          ref={formRef}
           onSubmit={handleSubmit}
           className='mt-8 flex flex-col gap-6 sm:mt-10'
           aria-busy={loading}
