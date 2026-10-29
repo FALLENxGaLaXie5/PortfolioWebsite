@@ -1,7 +1,5 @@
 import logo from "./logo.svg";
 import backend from "./backend.png";
-import creator from "./creator.png";
-import mobile from "./mobile.png";
 import web from "./web.png";
 import game from "./game.png"
 import soldier from "./soldier.png"
@@ -19,10 +17,8 @@ import javascript from "./tech/javascript.png";
 import mongodb from "./tech/mongodb.png";
 import nodejs from "./tech/nodejs.png";
 import reactjs from "./tech/reactjs.png";
-import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
-import threejs from "./tech/threejs.svg";
 import unity from "./tech/unity.png";
 import csharp from "./tech/csharp.png";
 import unreal from "./tech/unreal.png";
@@ -33,18 +29,11 @@ import python from "./tech/python.png";
 import godot from "./tech/godot.png";
 import tak from "./tech/tak.png";
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
 import sandbox from "./company/sandbox.png";
 import i3 from "./company/i3.jpg";
 import navair from "./company/navair.png";
 import empact from "./company/empact.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
 import bonkers from "./bonkers.png";
 import shark from "./shark.png";
 import cow from "./cow.png";
@@ -59,8 +48,6 @@ import language from "./language.png";
 export {
   logo,
   backend,
-  creator,
-  mobile,
   web,
   game,
   soldier,
@@ -77,21 +64,12 @@ export {
   mongodb,
   nodejs,
   reactjs,
-  redux,
   tailwind,
   typescript,
-  threejs,
-  meta,
-  shopify,
-  starbucks,
   sandbox,
   i3,
   navair,
   empact,
-  tesla,
-  carrent,
-  jobit,
-  tripguide,
   unity,
   csharp,
   unreal,

@@ -43,7 +43,7 @@ const Contact = () => {
       console.error(
         "EmailJS is not configured: set VITE_APP_EMAILJS_SERVICE_ID, VITE_APP_EMAILJS_TEMPLATE_ID and VITE_APP_EMAILJS_PUBLIC_KEY.",
       );
-      alert("Ahh, something went wrong. Please try again.");
+      alert("Something went wrong. Please try again.");
       return;
     }
 
