@@ -3,6 +3,7 @@ import { MotionConfig } from "motion/react";
 import { About, Contact, Experience, Hero, Navbar, Tech, Works } from "./components";
 import { StarsCanvas } from "./components/canvas";
 import LazyMount from "./components/LazyMount";
+import SceneViewsHost from "./components/SceneViewsHost";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             </LazyMount>
           </div>
         </main>
+        <SceneViewsHost />
       </div>
     </MotionConfig>
   );

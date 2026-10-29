@@ -19,6 +19,8 @@ import { SectionWrapper } from "../hoc";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { fadeIn } from "../utils/motion";
 import SectionHeader from "./SectionHeader";
+import LazyMount from "./LazyMount";
+import { DroneView, TerrainView } from "./canvas";
 
 type Track = "civilian" | "usmc";
 
@@ -157,11 +159,23 @@ const MarineCorpsTrack = () => {
   const training = marineCorpsService.filter((item) => item.kind === "training");
 
   return (
-    <>
+    // The accents are drawn by the page-wide SceneViewsCanvas, which finds
+    // this column through data-scene-views.
+    <div data-scene-views='accents' className='relative'>
       <TrackHeading title='U.S. Marine Corps' meta={marineCorpsRole.date} />
 
       {/* Header block: the Marine Corps role card. */}
       <div className='card-surface relative overflow-hidden p-5 sm:p-6'>
+        {/* Decorative 3D map banner (contour-lined terrain). */}
+        <div
+          aria-hidden='true'
+          className='relative -mx-5 -mt-5 mb-5 h-28 overflow-hidden border-b border-line bg-[radial-gradient(ellipse_at_center,rgb(145_94_255/0.18),transparent_70%)] sm:-mx-6 sm:-mt-6 sm:h-32'
+        >
+          <LazyMount className='absolute inset-0' rootMargin='300px 0px' fallback={null}>
+            <TerrainView />
+          </LazyMount>
+          <div className='pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-surface to-transparent' />
+        </div>
         <div className='flex items-center gap-4'>
           <span
             className='flex size-12 shrink-0 items-center justify-center rounded-full shadow-[0_0_0_3px_var(--color-primary),0_0_0_4px_rgb(145_94_255/0.5)]'
@@ -190,8 +204,21 @@ const MarineCorpsTrack = () => {
         />
 
         <ol className='relative'>
-          {billets.map((billet) => (
-            <BilletRow key={`${billet.title}-${billet.years}`} billet={billet} />
+          {billets.map((billet, index) => (
+            <BilletRow
+              key={`${billet.title}-${billet.years}`}
+              billet={billet}
+              accent={
+                index === 0 ? (
+                  // Decorative wireframe quadcopter beside the MIU billet.
+                  <div aria-hidden='true' className='-my-2 size-16 shrink-0 sm:size-20'>
+                    <LazyMount className='size-full' rootMargin='300px 0px' fallback={null}>
+                      <DroneView />
+                    </LazyMount>
+                  </div>
+                ) : undefined
+              }
+            />
           ))}
         </ol>
 
@@ -204,7 +231,7 @@ const MarineCorpsTrack = () => {
           ))}
         </ol>
       </div>
-    </>
+    </div>
   );
 };
 

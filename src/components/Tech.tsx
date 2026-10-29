@@ -21,9 +21,13 @@ const TechPlaceholder = () => (
 );
 
 const Tech = () => (
-  <LazyMount fallback={<TechPlaceholder />}>
-    <TechBalls />
-  </LazyMount>
+  // data-scene-views: the page-wide SceneViewsCanvas draws the balls and
+  // uses this element to know when the section is on screen.
+  <div data-scene-views='tech'>
+    <LazyMount fallback={<TechPlaceholder />}>
+      <TechBalls />
+    </LazyMount>
+  </div>
 );
 
 export default SectionWrapper(Tech, "");

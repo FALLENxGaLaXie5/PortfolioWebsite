@@ -1,11 +1,9 @@
-import { Suspense, useCallback, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Suspense, useCallback, useState } from "react";
 import {
   Decal,
   Float,
   OrbitControls,
   PerspectiveCamera,
-  Preload,
   useTexture,
   View,
 } from "@react-three/drei";
@@ -13,10 +11,8 @@ import {
 import CanvasLoader, { SceneReady } from "../Loader";
 import { technologies } from "../../constants";
 import { TECH_GRID_CLASS } from "../techGrid";
-import { useInView } from "../../hooks/useInView";
 import {
   useCoarsePointer,
-  useNarrowScreen,
   usePrefersReducedMotion,
 } from "../../hooks/useMediaQuery";
 
@@ -69,7 +65,7 @@ interface BallViewProps {
  * each); with 20 balls plus the other scenes the page exceeded the browser's
  * ~16-context limit, so the hero PC and the first few balls lost their
  * contexts and never rendered. Balls are now drei <View>s drawn by the single
- * shared canvas in <TechBalls>.
+ * page-wide <SceneViewsCanvas>.
  */
 const BallView = ({ icon, name, interactive, animate }: BallViewProps) => {
   const [loaded, setLoaded] = useState(false);
@@ -102,21 +98,13 @@ const BallView = ({ icon, name, interactive, animate }: BallViewProps) => {
   );
 };
 
-/** Every tech ball plus the single shared canvas that draws them. */
+/** Every tech ball; drawn by the page-wide <SceneViewsCanvas>. */
 const TechBalls = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(containerRef, { rootMargin: "100px 0px" });
   const coarse = useCoarsePointer();
-  const narrow = useNarrowScreen();
   const reducedMotion = usePrefersReducedMotion();
 
-  // Offscreen: no frames at all. Reduced motion: nothing animates, so only
-  // render on demand (drag/resize). Otherwise run the float animation.
-  const frameloop = !inView ? "never" : reducedMotion ? "demand" : "always";
-
   return (
-    <div ref={containerRef} className='relative'>
-      <ul className={TECH_GRID_CLASS}>
+    <ul className={TECH_GRID_CLASS}>
         {technologies.map((technology) => (
           <li key={technology.name}>
             <BallView
@@ -127,21 +115,7 @@ const TechBalls = () => {
             />
           </li>
         ))}
-      </ul>
-      <Canvas
-        eventSource={containerRef}
-        frameloop={frameloop}
-        dpr={coarse || narrow ? 1 : [1, 2]}
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-        }}
-      >
-        <View.Port />
-        <Preload all />
-      </Canvas>
-    </div>
+    </ul>
   );
 };
 
