@@ -237,7 +237,7 @@ const experiences: Experience[] = [
     ],
   },
   {
-    title: "Gameplay Engineer",
+    title: "Lead Gameplay Engineer",
     company_name: "i3 Corps",
     icon: i3,
     iconBg: "#E6DEDD",
