@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-import { ComputersCanvas } from "./canvas";
+import { HoloTerminalCanvas } from "./canvas";
 import LazyMount from "./LazyMount";
 import Spinner from "./Spinner";
 import { EASE_OUT } from "../utils/motion";
@@ -45,7 +45,7 @@ const Hero = () => {
           </div>
         }
       >
-        <ComputersCanvas />
+        <HoloTerminalCanvas />
       </LazyMount>
 
       <div className='pointer-events-none absolute inset-x-0 bottom-8 z-10 hidden justify-center lg:flex'>

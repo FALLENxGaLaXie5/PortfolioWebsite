@@ -16,7 +16,7 @@ import {
  * vertices of generated geometry plus one small shader.
  *
  * Both are drei <View>s drawn by the page-wide <SceneViewsCanvas> (the same
- * canvas as the tech balls), so they add no WebGL context of their own.
+ * canvas as the tech badges), so they add no WebGL context of their own.
  */
 
 /** Draw one frame when a static scene mounts (frameloop "demand"). */

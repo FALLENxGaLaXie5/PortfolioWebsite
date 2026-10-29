@@ -1,5 +1,5 @@
 import { useMemo, useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import {
   AdditiveBlending,
@@ -15,7 +15,7 @@ import SceneShell from "./SceneShell";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 /*
- * Variant A, "Procedural": everything is generated in code, no model files.
+ * Hero and contact scenes, generated entirely in code (no model files).
  */
 
 const VIOLET = "#915EFF";
@@ -155,15 +155,25 @@ const WireCore = ({ animate }: { animate: boolean }) => {
   );
 };
 
+/** Width of the screen arrangement at scale 1, with room for its sway. */
+const TERMINAL_WIDTH = 9.2;
+
 const Terminal = ({ animate, desktop }: { animate: boolean; desktop: boolean }) => {
   const group = useRef<Group>(null);
+  const viewportWidth = useThree((state) => state.viewport.width);
   useFrame((state) => {
     if (animate && group.current) {
       group.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.25) * 0.18;
     }
   });
+  // On desktop the hero text fills the left half, so fit the screens into
+  // the right half; on phones fit them to the full width.
+  const x = desktop ? viewportWidth / 4 : 0;
+  const scale = desktop
+    ? Math.min(0.78, ((viewportWidth / 2) * 0.92) / TERMINAL_WIDTH)
+    : Math.min(0.85, (viewportWidth * 0.96) / TERMINAL_WIDTH);
   return (
-    <group ref={group} position={[desktop ? 3.0 : 0, 0, 0]} scale={desktop ? 0.78 : 0.85}>
+    <group ref={group} position={[x, 0, 0]} scale={scale}>
       <WireCore animate={animate} />
       <HoloScreen position={[-3.1, 0.3, -0.6]} rotationY={0.5} width={2.6} height={3.4} seed={1} animate={animate} />
       <HoloScreen position={[0.3, 0.1, -2.4]} rotationY={0} width={4.6} height={2.8} seed={2} animate={animate} />

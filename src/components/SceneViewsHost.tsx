@@ -3,7 +3,7 @@ import { Suspense, useEffect, useState } from "react";
 import { SceneViewsCanvas } from "./canvas";
 
 /**
- * Mounts the page-wide View canvas (tech balls, Marine Corps accents) once
+ * Mounts the page-wide View canvas (tech badges, Marine Corps accents) once
  * any section that hosts Views comes within 600px of the viewport, so
  * three.js and the textures load only when they're about to be seen.
  */

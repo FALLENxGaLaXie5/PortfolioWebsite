@@ -3,7 +3,7 @@ import type { ChangeEvent, FormEvent } from "react";
 import { motion } from "motion/react";
 import emailjs from "@emailjs/browser";
 
-import { EarthCanvas } from "./canvas";
+import { HoloGlobeCanvas } from "./canvas";
 import LazyMount from "./LazyMount";
 import Spinner from "./Spinner";
 import SectionHeader from "./SectionHeader";
@@ -174,7 +174,7 @@ const Contact = () => {
             </div>
           }
         >
-          <EarthCanvas />
+          <HoloGlobeCanvas />
         </LazyMount>
       </motion.div>
     </div>

@@ -1,31 +1,28 @@
 import { SectionWrapper } from "../hoc";
 import { technologies } from "../constants";
-import { TechBalls } from "./canvas";
+import { TechConstellation } from "./canvas";
 import LazyMount from "./LazyMount";
 import Spinner from "./Spinner";
-import { TECH_GRID_CLASS } from "./techGrid";
+import { TECH_BOX_CLASS } from "./techBox";
 
-/** Same grid as the real balls, so nothing shifts when the canvas loads. */
+/** Same box as the badge constellation, so nothing shifts when it loads. */
 const TechPlaceholder = () => (
-  <ul className={TECH_GRID_CLASS}>
-    {technologies.map((technology) => (
-      <li
-        key={technology.name}
-        className='flex aspect-square items-center justify-center'
-      >
-        <span className='sr-only'>{technology.name}</span>
-        <Spinner className='opacity-60' />
-      </li>
-    ))}
-  </ul>
+  <div className={`${TECH_BOX_CLASS} flex items-center justify-center`}>
+    <ul className='sr-only'>
+      {technologies.map((technology) => (
+        <li key={technology.name}>{technology.name}</li>
+      ))}
+    </ul>
+    <Spinner className='opacity-60' />
+  </div>
 );
 
 const Tech = () => (
-  // data-scene-views: the page-wide SceneViewsCanvas draws the balls and
+  // data-scene-views: the page-wide SceneViewsCanvas draws the badges and
   // uses this element to know when the section is on screen.
   <div data-scene-views='tech'>
     <LazyMount fallback={<TechPlaceholder />}>
-      <TechBalls />
+      <TechConstellation />
     </LazyMount>
   </div>
 );

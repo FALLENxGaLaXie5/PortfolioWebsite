@@ -60,16 +60,15 @@ const InvalidateOnScroll = () => {
 };
 
 /**
- * The single canvas that draws every drei <View> on the page: the 20 tech
- * balls and the Marine Corps accents (terrain, drone).
+ * The single canvas that draws every drei <View> on the page: the tech
+ * badges and the Marine Corps accents (terrain, drone).
  *
  * It is fixed to the viewport because drei's View decides whether a view is
  * offscreen by comparing the view's viewport rectangle with the canvas size,
  * which is only correct when the canvas starts at the viewport origin. (A
  * canvas absolutely positioned inside one section silently skipped views to
  * the right of or below its own width/height.) pointer-events are off; each
- * View routes events to its own tracking element, so drag-to-rotate still
- * works on the balls.
+ * View routes events to its own tracking element.
  *
  * Render loop: 'never' while no View section is near the viewport, 'demand'
  * (static frames) when nothing visible should animate, otherwise 'always'.
@@ -80,7 +79,7 @@ const SceneViewsCanvas = () => {
   const narrow = useNarrowScreen();
   const reducedMotion = usePrefersReducedMotion();
 
-  // Tech balls float unless the user prefers reduced motion; the accents are
+  // Tech badges float unless the user prefers reduced motion; the accents are
   // also static on touch devices.
   const animate =
     !reducedMotion && (visible.has("tech") || (visible.has("accents") && !coarse));

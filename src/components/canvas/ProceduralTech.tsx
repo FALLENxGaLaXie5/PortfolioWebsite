@@ -1,6 +1,13 @@
 import { Suspense, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Float, PerspectiveCamera, useTexture, View } from "@react-three/drei";
+import {
+  Environment,
+  Float,
+  Lightformer,
+  PerspectiveCamera,
+  useTexture,
+  View,
+} from "@react-three/drei";
 import {
   BufferGeometry,
   CylinderGeometry,
@@ -11,20 +18,25 @@ import type { Group } from "three";
 
 import { technologies } from "../../constants";
 import { usePrefersReducedMotion } from "../../hooks/useMediaQuery";
+import { TECH_BOX_CLASS } from "../techBox";
 
 /*
- * Variant A tech section: glass hex badges in a slow constellation, drawn as
- * ONE drei <View> on the shared page-wide canvas. The glass is a cheap
- * transparent MeshPhysicalMaterial (no transmission pass), so 20 badges cost
- * a few ordinary draw calls each.
+ * Tech section: glass hex badges in a slow constellation, drawn as ONE drei
+ * <View> on the shared page-wide canvas. The glass uses three's built-in
+ * transmission, which costs one extra pass of the opaque objects (the
+ * constellation lines) per frame for the whole view, not one per badge.
+ * Reflections come from a procedural Lightformer environment, so nothing is
+ * downloaded.
  */
 
 const VIOLET = "#915EFF";
+/** --color-primary in src/index.css. */
+const PAGE_BG = "#050816";
 const CAMERA_Z = 10;
 const FOV = 40;
 const BADGE_RADIUS = 0.62;
 
-const HEX_GEOMETRY = new CylinderGeometry(BADGE_RADIUS, BADGE_RADIUS, 0.16, 6);
+const HEX_GEOMETRY = new CylinderGeometry(BADGE_RADIUS, BADGE_RADIUS, 0.3, 6);
 const HEX_EDGES = new EdgesGeometry(HEX_GEOMETRY);
 
 /** Small deterministic pseudo-random in [-1, 1) so the layout never reshuffles. */
@@ -37,8 +49,12 @@ type Point = [number, number];
 
 const columnsFor = (aspect: number): number => (aspect > 2.2 ? 10 : aspect > 1.3 ? 5 : 4);
 
+/** Phone layouts have tight cells, so badges fill less of them and wander less. */
+const isCompact = (cols: number): boolean => cols <= 4;
+
 const layoutPoints = (count: number, width: number, height: number): Point[] => {
   const cols = columnsFor(width / height);
+  const wander = isCompact(cols) ? 0.4 : 1;
   const rows = Math.ceil(count / cols);
   const cellW = width / cols;
   const cellH = height / rows;
@@ -47,8 +63,8 @@ const layoutPoints = (count: number, width: number, height: number): Point[] => 
     const col = i % cols;
     const row = Math.floor(i / cols);
     points.push([
-      -width / 2 + cellW * (col + 0.5) + jitter(i) * cellW * 0.12,
-      height / 2 - cellH * (row + 0.5) + jitter(i + 50) * cellH * 0.18,
+      -width / 2 + cellW * (col + 0.5) + jitter(i) * cellW * 0.12 * wander,
+      height / 2 - cellH * (row + 0.5) + jitter(i + 50) * cellH * 0.18 * wander,
     ]);
   }
   return points;
@@ -99,23 +115,23 @@ const HexBadge = ({ icon, position, scale, animate }: HexBadgeProps) => {
         <group rotation={[Math.PI / 2, Math.PI / 6, 0]}>
           <mesh geometry={HEX_GEOMETRY}>
             <meshPhysicalMaterial
-              color='#3a2a7a'
-              transparent
-              opacity={0.4}
-              roughness={0.12}
-              metalness={0.1}
+              color='#ffffff'
+              transmission={1}
+              thickness={0.8}
+              ior={1.5}
+              roughness={0.06}
               clearcoat={1}
-              clearcoatRoughness={0.1}
-              emissive={VIOLET}
-              emissiveIntensity={0.2}
-              depthWrite={false}
+              clearcoatRoughness={0.05}
+              attenuationColor={VIOLET}
+              attenuationDistance={2.5}
+              envMapIntensity={0.6}
             />
           </mesh>
           <lineSegments geometry={HEX_EDGES}>
             <lineBasicMaterial color={VIOLET} toneMapped={false} />
           </lineSegments>
         </group>
-        <mesh position-z={0.09}>
+        <mesh position-z={0.16}>
           <planeGeometry args={[0.8, 0.8]} />
           <meshBasicMaterial map={logo} transparent toneMapped={false} />
         </mesh>
@@ -140,7 +156,8 @@ const Constellation = ({ animate }: { animate: boolean }) => {
   // Keep badges inside their cells on narrow layouts.
   const cols = columnsFor(aspect);
   const cell = Math.min((width * 0.92) / cols, (height * 0.9) / Math.ceil(technologies.length / cols));
-  const scale = Math.min(1.3, cell / (BADGE_RADIUS * 2.35));
+  const fill = isCompact(cols) ? 0.66 : 0.85;
+  const scale = Math.min(1.3, (cell * fill) / (BADGE_RADIUS * 2));
 
   useFrame((state) => {
     if (animate && group.current) {
@@ -151,8 +168,18 @@ const Constellation = ({ animate }: { animate: boolean }) => {
 
   return (
     <group ref={group}>
-      <lineSegments geometry={lines}>
-        <lineBasicMaterial color={VIOLET} transparent opacity={0.28} />
+      {/*
+       * Opaque backdrop in the page colour: transmission can only refract
+       * what the scene draws, and an alpha canvas would leave it sampling
+       * transparent black.
+       */}
+      <mesh position-z={-1.5}>
+        <planeGeometry args={[width * 2, height * 2]} />
+        <meshBasicMaterial color={PAGE_BG} toneMapped={false} />
+      </mesh>
+      {/* Opaque and behind the badges, so the glass refracts them. */}
+      <lineSegments geometry={lines} position-z={-0.4}>
+        <lineBasicMaterial color='#5a3fa8' toneMapped={false} />
       </lineSegments>
       {technologies.map((technology, i) => {
         const point = points[i];
@@ -177,7 +204,7 @@ const TechConstellation = () => {
     <div
       role='img'
       aria-label={`Technologies: ${technologies.map((t) => t.name).join(", ")}`}
-      className='relative mx-auto h-[26rem] w-full max-w-5xl sm:h-[22rem] xl:h-[15rem] xl:max-w-none'
+      className={TECH_BOX_CLASS}
     >
       <View className='size-full'>
         <PerspectiveCamera makeDefault position={[0, 0, CAMERA_Z]} fov={FOV} near={0.1} far={100} />
@@ -186,6 +213,11 @@ const TechConstellation = () => {
         <pointLight position={[-3, -2, 3]} intensity={30} color={VIOLET} />
         <Suspense fallback={null}>
           <Constellation animate={!reducedMotion} />
+          <Environment resolution={128} frames={1}>
+            <Lightformer form='rect' intensity={3} position={[0, 4, 3]} scale={[8, 2, 1]} />
+            <Lightformer form='rect' intensity={2} color={VIOLET} position={[-5, 0, 2]} scale={[2, 6, 1]} />
+            <Lightformer form='ring' intensity={2} color='#c4a8ff' position={[5, -1, 3]} scale={2} />
+          </Environment>
         </Suspense>
       </View>
     </div>
