@@ -530,7 +530,7 @@ const projects: Project[] = [
     source_code_link: "https://github.com/FALLENxGaLaXie5/SharkAttack",
   },
   {
-    name: "Pandamoonium",
+    name: "Pandemoonium!",
     description:
       "3D survival game made for Global Game Jam 2021.",
     tags: [
