@@ -213,7 +213,7 @@ const experiences = [
     company_name: "Naval Air Warfare Center Weapons Division",
     icon: navair,
     iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
+    date: "Jan 2023 - April 2025",
     points: [
       "Developing and maintaining in-house software tools for Sea Range Safety utilization. Tool domain includes 3D data and orientation validation tools and IaC development.",
       "Serving as Missile Flight Safety Officer for Sea Range Safety Team.",
