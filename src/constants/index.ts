@@ -64,6 +64,17 @@ export interface Experience {
   points: string[];
 }
 
+export interface ServiceBillet {
+  /** Operational billet, or an officer training course (shown lighter). */
+  kind: "billet" | "training";
+  title: string;
+  /** Unit as written, e.g. "Battery N, 5/14". */
+  unit?: string;
+  /** Spelled-out battalion shorthand, e.g. "5th Battalion, 14th Marines". */
+  unitExpansion?: string;
+  years: string;
+}
+
 export interface Testimonial {
   testimonial: string;
   name: string;
@@ -250,17 +261,6 @@ const experiences: Experience[] = [
     ],
   },
   {
-    title: "Marine Corps Officer",
-    company_name: "United States Marine Corps",
-    icon: soldier,
-    iconBg: "#383E56",
-    date: "Jan 2018 - Present",
-    points: [
-      "Served three years as an active-duty Marine Corps artillery officer; now serving in the Selected Marine Corps Reserve.",
-      "Built a mobile ammunition tracker for artillery Fire Direction Center use (see Projects).",
-    ],
-  },
-  {
     title: "Game Programming and Math Instructor",
     company_name: "Sandbox4Kids",
     icon: sandbox,
@@ -270,6 +270,88 @@ const experiences: Experience[] = [
       "Created Unity and Unreal Engine curriculum covering game design, game programming patterns, and game architecture.",
       "Taught Unity and Unreal Engine game design courses for kids ages 8 to 16.",
     ],
+  },
+];
+
+/**
+ * Header card of the Marine Corps track, which runs in parallel with the
+ * civilian `experiences` timeline.
+ */
+const marineCorpsRole: Experience = {
+  title: "Marine Corps Officer",
+  company_name: "United States Marine Corps",
+  icon: soldier,
+  iconBg: "#383E56",
+  date: "2018 – Present",
+  points: [
+    "Served three years as an active-duty Marine Corps artillery officer; now serving in the Selected Marine Corps Reserve.",
+    "Built a mobile ammunition tracker for artillery Fire Direction Center use (see Projects).",
+  ],
+};
+
+/** Marine Corps billets and officer training, newest first. */
+const marineCorpsService: ServiceBillet[] = [
+  {
+    kind: "billet",
+    title: "Software Engineer and Tech Analyst",
+    unit: "Marine Innovation Unit (MIU)",
+    years: "2024 – Present",
+  },
+  {
+    kind: "billet",
+    title: "Platoon Commander",
+    unit: "Battery N, 5/14",
+    unitExpansion: "5th Battalion, 14th Marines",
+    years: "2022 – 2023",
+  },
+  {
+    kind: "billet",
+    title: "Battalion Liaison Officer",
+    unit: "1/23",
+    unitExpansion: "1st Battalion, 23rd Marines",
+    years: "2021 – 2022",
+  },
+  {
+    kind: "billet",
+    title: "Fire Direction Officer",
+    unit: "Battery N, 5/14",
+    unitExpansion: "5th Battalion, 14th Marines",
+    years: "2020 – 2021",
+  },
+  {
+    kind: "billet",
+    title: "Assistant Liaison Officer",
+    unit: "4th Marines",
+    years: "2020",
+  },
+  {
+    kind: "billet",
+    title: "Fire Direction Officer",
+    unit: "Battery C, 3/12",
+    unitExpansion: "3rd Battalion, 12th Marines",
+    years: "2019 – 2020",
+  },
+  {
+    kind: "billet",
+    title: "Executive Officer",
+    unit: "Battery N, 5/14",
+    unitExpansion: "5th Battalion, 14th Marines",
+    years: "2019",
+  },
+  {
+    kind: "training",
+    title: "Marine Corps Artillery Officer Basic Course",
+    years: "2018 – 2019",
+  },
+  {
+    kind: "training",
+    title: "The Basic School",
+    years: "2018",
+  },
+  {
+    kind: "training",
+    title: "Officer Candidates School",
+    years: "2018",
   },
 ];
 
@@ -482,4 +564,12 @@ const projects: Project[] = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export {
+  services,
+  technologies,
+  experiences,
+  marineCorpsRole,
+  marineCorpsService,
+  testimonials,
+  projects,
+};
