@@ -126,16 +126,16 @@ const services: Service[] = [
     icon: web,
   },
   {
-    title: "AI Engineer",
-    icon: backend,
-  },
-  {
     title: "Game Engineer",
     icon: game,
   },
   {
     title: "Aspiring Embedded Systems Engineer",
     icon: chip,
+  },
+  {
+    title: "AI Engineer",
+    icon: backend,
   },
 ];
 
