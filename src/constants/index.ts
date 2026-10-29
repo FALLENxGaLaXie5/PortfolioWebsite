@@ -284,8 +284,9 @@ const marineCorpsRole: Experience = {
   iconBg: "#383E56",
   date: "2018 – Present",
   points: [
-    "Served three years as an active-duty Marine Corps artillery officer; now serving in the Selected Marine Corps Reserve.",
-    "Built a mobile ammunition tracker for artillery Fire Direction Center use (see Projects).",
+    "Led platoons and batteries of Marines as an artillery officer, including a deployment with the 31st Marine Expeditionary Unit.",
+    "Built distributed cloud software and ATAK/WinTAK mission applications for Marine Corps operations.",
+    "Commissioned in 2018 and serving continuously since, now as a software engineer with the Marine Innovation Unit.",
   ],
 };
 
