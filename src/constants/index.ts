@@ -286,7 +286,7 @@ const marineCorpsRole: Experience = {
   points: [
     "Led platoons and batteries of Marines as an artillery officer, and facilitated embarkation, training, and supply chain efforts on the 31st Marine Expeditionary Unit.",
     "Built distributed cloud software and ATAK/WinTAK mission applications for Marine Corps operations.",
-    "Commissioned in 2018 and serving continuously since, now as a software engineer with the Marine Innovation Unit.",
+    "Commissioned in 2018 and serving continuously since, now as a Software Engineer with the Marine Innovation Unit.",
   ],
 };
 
