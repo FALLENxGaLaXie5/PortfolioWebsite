@@ -261,16 +261,23 @@ const OrbitRing = ({ radius, tilt, speed, animate }: RingProps) => {
   );
 };
 
+/** Outer orbit radius plus its moon, at scale 1. */
+const GLOBE_EXTENT = 1.85;
+
 const HoloGlobe = ({ animate }: { animate: boolean }) => {
   const globe = useRef<Group>(null);
   const positions = useMemo(() => fibonacciSphere(POINT_COUNT, 1), []);
+  // The canvas is often taller than wide, and the fov is vertical, so fit the
+  // orbits to the smaller side or the outer ring clips at the canvas edge.
+  const fitSize = useThree((state) => Math.min(state.viewport.width, state.viewport.height));
+  const scale = Math.min(1.75, (fitSize * 0.46) / GLOBE_EXTENT);
 
   useFrame((_state, delta) => {
     if (animate && globe.current) globe.current.rotation.y += delta * 0.2;
   });
 
   return (
-    <group scale={1.75} rotation={[0.35, 0, 0.15]}>
+    <group scale={scale} rotation={[0.35, 0, 0.15]}>
       <group ref={globe}>
         <points>
           <bufferGeometry>
