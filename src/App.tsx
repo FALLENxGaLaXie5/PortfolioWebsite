@@ -3,6 +3,7 @@ import { MotionConfig } from "motion/react";
 import { About, Contact, Experience, Hero, Navbar, Tech, Works } from "./components";
 import { StarsCanvas } from "./components/canvas";
 import LazyMount from "./components/LazyMount";
+import ComparePill from "./components/ComparePill";
 import SceneViewsHost from "./components/SceneViewsHost";
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
           </div>
         </main>
         <SceneViewsHost />
+        <ComparePill />
       </div>
     </MotionConfig>
   );
