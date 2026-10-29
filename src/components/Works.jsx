@@ -14,6 +14,7 @@ const ProjectCard = ({
   description,
   tags,
   image,
+  image_bg,
   source_code_link,
 }) => {
   return (
@@ -31,6 +32,7 @@ const ProjectCard = ({
             src={image}
             alt='project_image'
             className='w-full h-full object-cover rounded-2xl'
+            style={{ background: image_bg }}
           />
 
           <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>

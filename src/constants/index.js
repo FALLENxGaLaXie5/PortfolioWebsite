@@ -47,6 +47,7 @@ import {
   portfolio,
   thesis,
   language,
+  empact,
 } from "../assets";
 
 export const navLinks = [
@@ -246,6 +247,28 @@ const testimonials = [
 ];
 
 const projects = [
+  {
+    name: "EMPACT",
+    description:
+      "HTX Labs' IL4-accredited mission readiness platform for the Department of War, unifying immersive training, guided execution, and performance capture. Building full-stack and AI capabilities across the product.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "dotnet",
+        color: "green-text-gradient",
+      },
+      {
+        name: "ai",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: empact,
+    image_bg: "#ffffff",
+    source_code_link: "https://www.htxlabs.com/empact-1",
+  },
   {
     name: "Bonkers",
     description:
