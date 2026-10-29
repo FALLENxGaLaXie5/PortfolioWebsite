@@ -1,5 +1,4 @@
 import {
-  mobile,
   backend,
   web,
   game,
@@ -37,6 +36,7 @@ import {
   portfolio,
   thesis,
   language,
+  empact,
 } from "../assets";
 
 export interface NavLink {
@@ -88,6 +88,8 @@ export interface Project {
   description: string;
   tags: ProjectTag[];
   image: string;
+  /** Background behind the card image, for transparent logos. */
+  image_bg?: string;
   source_code_link: string;
 }
 
@@ -108,16 +110,16 @@ export const navLinks: NavLink[] = [
 
 const services: Service[] = [
   {
-    title: "Game Developer",
-    icon: game,
-  },
-  {
-    title: "Web Developer",
+    title: "Full Stack Engineer",
     icon: web,
   },
   {
-    title: "Mobile Developer",
-    icon: mobile,
+    title: "AI Engineer",
+    icon: backend,
+  },
+  {
+    title: "Game Developer",
+    icon: game,
   },
   {
     title: "Marine Corps Officer",
@@ -159,11 +161,11 @@ const technologies: Technology[] = [
     icon: python,
   },
   {
-    name: "HTML 5",
+    name: "HTML5",
     icon: html,
   },
   {
-    name: "CSS 3",
+    name: "CSS3",
     icon: css,
   },
   {
@@ -175,7 +177,7 @@ const technologies: Technology[] = [
     icon: typescript,
   },
   {
-    name: "React JS",
+    name: "React",
     icon: reactjs,
   },
   {
@@ -183,7 +185,7 @@ const technologies: Technology[] = [
     icon: tailwind,
   },
   {
-    name: "Node JS",
+    name: "Node.js",
     icon: nodejs,
   },
   {
@@ -195,44 +197,42 @@ const technologies: Technology[] = [
     icon: tak,
   },
   {
-    name: "git",
+    name: "Git",
     icon: git,
   },
   {
-    name: "figma",
+    name: "Figma",
     icon: figma,
   },
   {
-    name: "docker",
+    name: "Docker",
     icon: docker,
   },
 ];
 
 const experiences: Experience[] = [
   {
-    title: "Game Programming and Math Instructor",
-    company_name: "Sandbox4Kids",
-    icon: sandbox,
+    title: "Full Stack Engineer and Rapid Prototype Engineer",
+    company_name: "HTX Labs",
+    icon: backend,
     iconBg: "#383E56",
-    date: "April 2015 - December 2017",
+    date: "Apr 2025 - Present",
     points: [
-      "Created Unity and Unreal Engine Curriculum to teach kids game design, game programming patterns, and game architecture.",
-      "Collaborated with cross-functional teams to create relevent and industry standard curriculum.",
-      "Instructed Unity and Unreal Engine game design courses for kids between 8 and 16 years old.",
-      "Participated in code reviews and provided constructive feedback to other instructors.",
+      "Ship full-stack features for EMPACT with React/TypeScript, .NET/C#, PostgreSQL/Marten, Docker, Kubernetes, and Azure.",
+      "Build production AI capabilities, including RAG, agentic workflows, MCP tooling, and evaluation frameworks.",
+      "Delivered rapid prototypes to validate new products, including a 60-day mobile go-to-market initiative.",
     ],
   },
   {
-    title: "Marine Corps Officer",
-    company_name: "United States Marine Corps",
-    icon: soldier,
-    iconBg: "#383E56",
-    date: "Jan 2018 - Present",
+    title: "Software Engineer",
+    company_name: "Naval Air Warfare Center Weapons Division",
+    icon: navair,
+    iconBg: "#E6DEDD",
+    date: "Jan 2023 - Apr 2025",
     points: [
-      "Served as an active duty Marine Corps Artillery Officer for three years, and have been working in the Selected Marine Corps Reserves for over three years.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Developed and maintained in-house Sea Range Safety software, including 3D data and orientation validation tools and infrastructure as code.",
+      "Served as Missile Flight Safety Officer for the Sea Range Safety team.",
+      "Provided cross-functional software development support as the team's tools subject matter expert.",
     ],
   },
   {
@@ -242,118 +242,68 @@ const experiences: Experience[] = [
     iconBg: "#E6DEDD",
     date: "Aug 2021 - Aug 2022",
     points: [
-      "Developed virutal reality and 3D training solutions for defense clients.",
-      "Collaborated with teams of software developers, 3D modelers, 2D arists, product owners and defense stakeholders.",
-      "Served as the lead developer and scrum master for primary project.",
-      "Participated in code reviews and provided constructive feedback to other developers.",
-      "Collaborated with full stack .NET and Web Developers to integrate game development projects into wrapped full stack client solutions.",
-      "Sat on hiring panel for new Software Developers, vetting interview projects and writing interview curriculum for interviewees.",
+      "Developed virtual reality and 3D training solutions in Unity for defense clients.",
+      "Served as lead developer and Scrum Master for the primary project.",
+      "Worked with .NET and web developers to integrate Unity training projects into full-stack client applications.",
+      "Sat on the hiring panel for new software developers, reviewing interview projects and writing interview materials.",
     ],
   },
   {
-    title: "Software Engineer",
-    company_name: "Naval Air Warfare Center Weapons Division",
-    icon: navair,
-    iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
-    points: [
-      "Developing and maintaining in-house software tools for Sea Range Safety utilization. Tool domain includes 3D data and orientation validation tools and IaC development.",
-      "Serving as Missile Flight Safety Officer for Sea Range Safety Team.",
-      "Providing cross-functional software development support as tools subject matter expert.",
-    ],
-  },
-  {
-    title: "Full Stack Engineer and Rapid Prototype Engineer",
-    company_name: "HTX Labs",
-    icon: backend,
+    title: "Marine Corps Officer",
+    company_name: "United States Marine Corps",
+    icon: soldier,
     iconBg: "#383E56",
-    date: "Apr 2025 - Present",
+    date: "Jan 2018 - Present",
     points: [
-      "Shipping full-stack product features with React/TypeScript, .NET/C#, PostgreSQL, Docker, Kubernetes, and Azure.",
-      "Building production AI capabilities including RAG, agentic workflows, MCP tooling, and evaluation frameworks.",
-      "Delivered rapid prototypes to validate new products, including a 60-day mobile go-to-market initiative.",
+      "Served three years as an active-duty Marine Corps artillery officer; now serving in the Selected Marine Corps Reserve.",
+      "Built a mobile ammunition tracker for artillery Fire Direction Center use (see Projects).",
+    ],
+  },
+  {
+    title: "Game Programming and Math Instructor",
+    company_name: "Sandbox4Kids",
+    icon: sandbox,
+    iconBg: "#383E56",
+    date: "Apr 2015 - Dec 2017",
+    points: [
+      "Created Unity and Unreal Engine curriculum covering game design, game programming patterns, and game architecture.",
+      "Taught Unity and Unreal Engine game design courses for kids ages 8 to 16.",
     ],
   },
 ];
 
-const testimonials: Testimonial[] = [
-  {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
-  },
-];
+const testimonials: Testimonial[] = [];
 
 const projects: Project[] = [
   {
-    name: "Bonkers",
+    name: "EMPACT",
     description:
-      "Top down, local and networked multiplayer, 2D puzzle based video game.",
-    tags: [
-      {
-        name: "unity",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "csharp",
-        color: "green-text-gradient",
-      },
-    ],
-    image: bonkers,
-    source_code_link: "https://github.com/FALLENxGaLaXie5/Bonkers",
-  },
-  {
-    name: "Portfolio",
-    description:
-      "3D Portfolio Website!",
+      "HTX Labs' IL4-accredited mission readiness platform for the Department of War, unifying immersive training, guided execution, and performance capture. I build full-stack features and production AI capabilities across the product.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "threejs",
+        name: "dotnet",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "ai",
         color: "pink-text-gradient",
       },
     ],
-    image: portfolio,
-    source_code_link: "https://github.com/",
+    image: empact,
+    image_bg: "#ffffff",
+    source_code_link: "https://www.htxlabs.com/empact-1",
   },
   {
-    name: "Tagalog Language Learning Application",
+    name: "Master's Thesis: ML-Based Level Generation",
     description:
-      "Custom Tagalog language application being built using flutter and dart. In progress project, hoping to complete by the end of 2025!",
+      "Used reinforcement learning to procedurally generate game levels, backed by original thesis research. Built with Unity ML-Agents, using my game Bonkers as the test bed.",
     tags: [
       {
-        name: "flutter",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "dart",
-        color: "green-text-gradient",
-      },
-      {
-        name: "firebase",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: language,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "Master's Thesis Project - Machine Learning Based Content Generation",
-    description:
-      "Project portion of master's thesis. Project showcased a feasible method for generating level content using reinforcement learning, backed up by original thesis research paper. Machine Learning project built off of existing libraries using Bonkers as a test bed.",
-    tags: [
-      {
-        name: ".net",
+        name: "dotnet",
         color: "blue-text-gradient",
       },
       {
@@ -369,43 +319,9 @@ const projects: Project[] = [
     source_code_link: "https://github.com/FALLENxGaLaXie5/Bonkers/tree/master/Assets/Scripts/Bonkers/Content%20Generation",
   },
   {
-    name: "Fintastic Feast",
-    description:
-      "Mobile, drag and shoot style platformer video game.",
-    tags: [
-      {
-        name: "unity",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "csharp",
-        color: "green-text-gradient",
-      },
-    ],
-    image: shark,
-    source_code_link: "https://github.com/FALLENxGaLaXie5/SharkAttack",
-  },
-  {
-    name: "Pandamoonium",
-    description:
-      "3D survival game for Global Game Jam 2021.",
-    tags: [
-      {
-        name: "unity",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "csharp",
-        color: "green-text-gradient",
-      },
-    ],
-    image: cow,
-    source_code_link: "https://archosaur.itch.io/pandemoonium",
-  },
-  {
     name: "Artillery Ammo Tracker",
     description:
-      "Artillery ammunition tracker for mobile devices in a Fire Direction Center.",
+      "Mobile app for tracking ammunition in an artillery Fire Direction Center.",
     tags: [
       {
         name: "unity",
@@ -422,7 +338,7 @@ const projects: Project[] = [
   {
     name: "i3 3D Maintenance Trainer",
     description:
-      "3D Maintenance Trainer as part of employment at i3 Corps.",
+      "3D maintenance trainer built in Unity at i3 Corps.",
     tags: [
       {
         name: "unity",
@@ -432,18 +348,14 @@ const projects: Project[] = [
         name: "csharp",
         color: "green-text-gradient",
       },
-      {
-        name: "jira",
-        color: "pink-text-gradient",
-      },
     ],
     image: i3trainer,
-    source_code_link: "https://github.com/",
+    source_code_link: "",
   },
   {
     name: "One More Night",
     description:
-      "3D Networked Multiplayer Zombie Survival Video Game on Steam for Big Red Planet.",
+      "3D networked multiplayer zombie survival game on Steam, developed for Big Red Planet.",
     tags: [
       {
         name: "unity",
@@ -458,9 +370,102 @@ const projects: Project[] = [
     source_code_link: "https://store.steampowered.com/app/535630/One_More_Night/",
   },
   {
+    name: "Bonkers",
+    description:
+      "Top-down 2D puzzle game with local and networked multiplayer; later the test bed for my ML thesis.",
+    tags: [
+      {
+        name: "unity",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "csharp",
+        color: "green-text-gradient",
+      },
+    ],
+    image: bonkers,
+    source_code_link: "https://github.com/FALLENxGaLaXie5/Bonkers",
+  },
+  {
+    name: "Portfolio",
+    description:
+      "This site: a 3D portfolio built with React, three.js, and Tailwind CSS.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "threejs",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: portfolio,
+    source_code_link: "https://github.com/FALLENxGaLaXie5/PortfolioWebsite",
+  },
+  {
+    name: "Tagalog Language Learning Application",
+    description:
+      "Tagalog language-learning app built with Flutter, Dart, and Firebase. In progress.",
+    tags: [
+      {
+        name: "flutter",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "dart",
+        color: "green-text-gradient",
+      },
+      {
+        name: "firebase",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: language,
+    source_code_link: "",
+  },
+  {
+    name: "Fintastic Feast",
+    description:
+      "Mobile drag-and-shoot platformer.",
+    tags: [
+      {
+        name: "unity",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "csharp",
+        color: "green-text-gradient",
+      },
+    ],
+    image: shark,
+    source_code_link: "https://github.com/FALLENxGaLaXie5/SharkAttack",
+  },
+  {
+    name: "Pandamoonium",
+    description:
+      "3D survival game made for Global Game Jam 2021.",
+    tags: [
+      {
+        name: "unity",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "csharp",
+        color: "green-text-gradient",
+      },
+    ],
+    image: cow,
+    source_code_link: "https://archosaur.itch.io/pandemoonium",
+  },
+  {
     name: "Spark Boy",
     description:
-      "2D Platformer video game for Ludum Dare 50 Game Jam.",
+      "2D platformer made for the Ludum Dare 50 game jam.",
     tags: [
       {
         name: "unity",

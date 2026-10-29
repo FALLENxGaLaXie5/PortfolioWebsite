@@ -37,6 +37,7 @@ import shopify from "./company/shopify.png";
 import sandbox from "./company/sandbox.png";
 import i3 from "./company/i3.jpg";
 import navair from "./company/navair.png";
+import empact from "./company/empact.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 
@@ -84,6 +85,7 @@ export {
   sandbox,
   i3,
   navair,
+  empact,
   tesla,
   carrent,
   jobit,
