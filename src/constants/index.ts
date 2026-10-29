@@ -3,6 +3,7 @@ import {
   web,
   game,
   soldier,
+  chip,
   javascript,
   typescript,
   html,
@@ -118,12 +119,12 @@ const services: Service[] = [
     icon: backend,
   },
   {
-    title: "Game Developer",
+    title: "Game Engineer",
     icon: game,
   },
   {
-    title: "Marine Corps Officer",
-    icon: soldier,
+    title: "Aspiring Embedded Systems Engineer",
+    icon: chip,
   },
 ];
 

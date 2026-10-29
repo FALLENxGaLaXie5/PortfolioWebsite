@@ -5,6 +5,7 @@ import mobile from "./mobile.png";
 import web from "./web.png";
 import game from "./game.png"
 import soldier from "./soldier.png"
+import chip from "./chip.svg";
 import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
@@ -63,6 +64,7 @@ export {
   web,
   game,
   soldier,
+  chip,
   github,
   menu,
   close,
