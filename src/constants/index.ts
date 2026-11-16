@@ -137,6 +137,10 @@ const services: Service[] = [
     title: "AI Engineer",
     icon: backend,
   },
+  {
+    title: "Marine Officer",
+    icon: soldier,
+  },
 ];
 
 const technologies: Technology[] = [

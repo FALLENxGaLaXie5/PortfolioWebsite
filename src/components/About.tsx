@@ -44,7 +44,7 @@ const About = () => {
         I build production AI, distributed systems, and immersive 3D software that matters to the people using it. I'm also a Marine Corps officer, a former Missile Flight Safety Officer, and a lifelong game developer.
       </motion.p>
 
-      <ul className='mt-12 grid grid-cols-1 gap-4 xs:grid-cols-2 sm:mt-16 sm:gap-6 lg:grid-cols-4'>
+      <ul className='mt-12 grid grid-cols-1 gap-4 xs:grid-cols-2 sm:mt-16 sm:gap-6 lg:grid-cols-5'>
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
