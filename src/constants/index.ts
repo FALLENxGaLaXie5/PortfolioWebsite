@@ -32,6 +32,7 @@ import {
   cow,
   ammo,
   i3trainer,
+  tripcanvas,
   onemorenight,
   spark,
   portfolio,
@@ -407,6 +408,44 @@ const projects: Project[] = [
     source_code_link: "https://github.com/FALLENxGaLaXie5/Bonkers/tree/master/Assets/Scripts/Bonkers/Content%20Generation",
   },
   {
+    name: "i3 XR Maintenance Trainer",
+    description:
+      "XR maintenance trainer built in Unity at i3 Corps.",
+    tags: [
+      {
+        name: "unity",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "csharp",
+        color: "green-text-gradient",
+      },
+    ],
+    image: i3trainer,
+    source_code_link: "",
+  },
+  {
+    name: "TripCanvas",
+    description:
+      "Collaborative, node-based trip planner. Places are nodes and travel legs are connectors, with branching routes, group voting, cost and time rollups, and a live map view.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "react-flow",
+        color: "green-text-gradient",
+      },
+      {
+        name: "maplibre",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: tripcanvas,
+    source_code_link: "",
+  },
+  {
     name: "Artillery Ammo Tracker",
     description:
       "Mobile app for tracking ammunition in an artillery Fire Direction Center.",
@@ -422,23 +461,6 @@ const projects: Project[] = [
     ],
     image: ammo,
     source_code_link: "https://github.com/FALLENxGaLaXie5/AmmoTracker",
-  },
-  {
-    name: "i3 3D Maintenance Trainer",
-    description:
-      "3D maintenance trainer built in Unity at i3 Corps.",
-    tags: [
-      {
-        name: "unity",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "csharp",
-        color: "green-text-gradient",
-      },
-    ],
-    image: i3trainer,
-    source_code_link: "",
   },
   {
     name: "One More Night",

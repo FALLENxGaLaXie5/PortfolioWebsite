@@ -35,6 +35,7 @@ import bonkers from "./bonkers.webp";
 import shark from "./shark.webp";
 import cow from "./cow.webp";
 import i3trainer from "./i3trainer.jpg";
+import tripcanvas from "./tripcanvas.webp";
 import onemorenight from "./onemorenight.webp";
 import ammo from "./ammo.webp";
 import spark from "./spark.webp";
@@ -77,6 +78,7 @@ export {
   shark,
   cow,
   i3trainer,
+  tripcanvas,
   onemorenight,
   ammo,
   spark,
