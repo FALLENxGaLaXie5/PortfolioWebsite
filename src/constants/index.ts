@@ -390,7 +390,7 @@ const projects: Project[] = [
   {
     name: "USMC HLZ Predictor (ATAK Plugin)",
     description:
-      "ATAK plugin I lead at Marine Innovation Unit. It predicts helicopter landing zones offline from elevation and land-cover data, by airframe, to support squad-level CASEVAC and insert/extract planning.",
+      "Lead on an ATAK plugin now in use by MAWTS-1 and EMS teams in Colorado and North Carolina. It finds viable helicopter landing zones for the MV-22, CH-53, UH-1Y and AH-1Z fully offline, so teams can plan CASEVAC and inserts with no connectivity. Shipped on the Marine Corps' Summer 2025 MAGTAB load; built with NRL, MCTSSA and Parsons.",
     tags: [
       {
         name: "java",
