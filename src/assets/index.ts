@@ -36,6 +36,7 @@ import shark from "./shark.webp";
 import cow from "./cow.webp";
 import i3trainer from "./i3trainer.jpg";
 import tripcanvas from "./tripcanvas.webp";
+import hlz from "./hlz.webp";
 import onemorenight from "./onemorenight.webp";
 import ammo from "./ammo.webp";
 import spark from "./spark.webp";
@@ -79,6 +80,7 @@ export {
   cow,
   i3trainer,
   tripcanvas,
+  hlz,
   onemorenight,
   ammo,
   spark,

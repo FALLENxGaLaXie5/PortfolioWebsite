@@ -33,6 +33,7 @@ import {
   ammo,
   i3trainer,
   tripcanvas,
+  hlz,
   onemorenight,
   spark,
   portfolio,
@@ -385,6 +386,27 @@ const projects: Project[] = [
     image: empact,
     image_bg: "#ffffff",
     source_code_link: "https://www.htxlabs.com/empact-1",
+  },
+  {
+    name: "USMC HLZ Predictor (ATAK Plugin)",
+    description:
+      "ATAK plugin I lead at Marine Innovation Unit. It predicts helicopter landing zones offline from elevation and land-cover data, by airframe, to support squad-level CASEVAC and insert/extract planning.",
+    tags: [
+      {
+        name: "java",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "atak",
+        color: "green-text-gradient",
+      },
+      {
+        name: "gdal",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: hlz,
+    source_code_link: "",
   },
   {
     name: "Master's Thesis: ML-Based Level Generation",
