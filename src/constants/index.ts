@@ -34,6 +34,7 @@ import {
   i3trainer,
   tripcanvas,
   hlz,
+  satpointer,
   onemorenight,
   spark,
   portfolio,
@@ -481,6 +482,31 @@ const projects: Project[] = [
     ],
     image: i3trainer,
     source_code_link: "",
+  },
+  {
+    name: "SatPointer - ATAK",
+    description:
+      "ATAK plugin that gives Marine SATCOM operators instant azimuth and elevation to geosynchronous satellites, checks terrain clearance against elevation data, and shows satellites live in the sky through the phone camera (AR). Published on the TAK Product Center and requested by 1st Marine Division.",
+    tags: [
+      {
+        name: "kotlin",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "atak",
+        color: "green-text-gradient",
+      },
+      {
+        name: "sgp4",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "ar",
+        color: "blue-text-gradient",
+      },
+    ],
+    image: satpointer,
+    source_code_link: "https://tak.gov/plugins/sat-pointer",
   },
   {
     name: "TripCanvas",
