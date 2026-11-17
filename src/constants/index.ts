@@ -382,6 +382,34 @@ const projects: Project[] = [
         name: "ai",
         color: "pink-text-gradient",
       },
+      {
+        name: "k8s",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "docker",
+        color: "green-text-gradient",
+      },
+      {
+        name: "azure",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "rag",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mcp",
+        color: "green-text-gradient",
+      },
+      {
+        name: "unreal",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "c++",
+        color: "blue-text-gradient",
+      },
     ],
     image: empact,
     image_bg: "#ffffff",
