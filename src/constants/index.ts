@@ -293,7 +293,7 @@ const marineCorpsRole: Experience = {
   points: [
     "Led platoons and batteries of Marines as an artillery officer, and facilitated embarkation, training, and supply chain efforts on the 31st Marine Expeditionary Unit.",
     "Built distributed cloud software and ATAK/WinTAK mission applications for Marine Corps operations.",
-    "Commissioned in 2018 and serving continuously since, now as a Software Engineer with the Marine Innovation Unit.",
+    "Commissioned in 2018 and serving continuously since, now as a Technology Lead with the Marine Innovation Unit.",
   ],
 };
 
@@ -301,7 +301,7 @@ const marineCorpsRole: Experience = {
 const marineCorpsService: ServiceBillet[] = [
   {
     kind: "billet",
-    title: "Software Engineer and Tech Analyst",
+    title: "Technology Lead",
     unit: "Marine Innovation Unit (MIU)",
     years: "2024 – Present",
   },
